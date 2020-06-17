@@ -11,6 +11,13 @@ class controlBar extends Component {
                 <button>Fill Uncolored</button>
                 <button>Fill All</button>
                 <button>Clear</button>
+                <select onchange="selected()" id = "selectedID">
+                    <option value="SELECT">SELECT</option>
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                    <option value="Yellow">Yellow</option>
+                </select>
             </div> 
         );
     }
