@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Control from './components/controlBar'
+import Grid from './components/grid'
 
 const element =  <h1>Hello World</h1>;
 
-ReactDOM.render(<Control />, document.getElementById('root'));
+ReactDOM.render(<Grid />, document.getElementById('root'));
