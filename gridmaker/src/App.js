@@ -50,7 +50,7 @@ class App extends Component{
         } else if (this.state.cols === 1) {
             this.setState({rows:0, cols:0}); //setting state to make grid empty
         } else {
-            this.setState({rows:this.state.cols - 1}); //if not empty, cols - 1
+            this.setState({cols:this.state.cols - 1}); //if not empty, cols - 1
         }
     }
 
