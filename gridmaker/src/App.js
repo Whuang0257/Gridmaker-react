@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './css/App.css';
-import Grid from './Components/Grid'
+import Grid from './components/Grid'
 
 class App extends Component{
     constructor(){
