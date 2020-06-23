@@ -33,19 +33,24 @@ class App extends Component{
 
     //remove row
     removeRow = () => {
-        if (this.state.rows === 1) {
+        if (this.state.rows === 0) {
+            this.setState({rows:0, cols:0}) //if grid is already empty
+        } else if (this.state.rows === 1) {
             this.setState({rows:0, cols:0}); //setting state to make grid empty
         } else {
             this.setState({rows:this.state.rows - 1}); //if not empty, row - 1
         }
+
     }
 
     //remove cols
     removeCol = () => {
-        if (this.state.rows === 1) {
+        if (this.state.cols === 0) {
+            this.setState({rows:0, cols:0}) //if grid is already empty
+        } else if (this.state.cols === 1) {
             this.setState({rows:0, cols:0}); //setting state to make grid empty
         } else {
-            this.setState({rows:this.state.cols - 1}); //if not empty, col - 1
+            this.setState({rows:this.state.cols - 1}); //if not empty, cols - 1
         }
     }
 
