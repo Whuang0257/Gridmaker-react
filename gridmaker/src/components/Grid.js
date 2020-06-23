@@ -9,8 +9,9 @@ const Grid = ({rows, cols}) => {
                     <tr>
                         {Array.from(Array(cols), () => {
                             return (
-                                // create the <td> for grid
-                                <td></td>
+                                // create the <td> for grid, initiated with element style to allow fillUncolored to function
+                                <td style={{backgroundColor: 'white'}}>
+                                </td>
                             )
                         })}
                     </tr>

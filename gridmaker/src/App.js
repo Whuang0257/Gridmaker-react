@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './css/App.css';
 import Grid from './Components/Grid'
 
@@ -8,6 +9,7 @@ class App extends Component{
         this.state={
             rows: 0,
             cols: 0,
+            backgroundColor: "white"
         }
     }
 
@@ -54,6 +56,43 @@ class App extends Component{
         }
     }
 
+    //set color on change of selection
+    selectColor = (selected) => {
+        this.setState({color: selected.target.value})
+    }
+
+    //fills blank tiles to selected color
+    fillUncolored = () => {
+        //console.log(ReactDOM.findDOMNode(this).childNodes); //used to find childNodes, 8 is the table node
+        //console.log(ReactDOM.findDOMNode(this).childNodes[8]); //there is only one childNode, 0 which is the tbody
+
+        let table = ReactDOM.findDOMNode(this).childNodes[8].childNodes[0].childNodes;
+        for(let i = 0; i < this.state.rows; i++){//iterating through the trs which contain tds
+            for(let j = 0; j < this.state.cols; j++){
+                if (table[i].childNodes[j].style.backgroundColor === "white") { //only uncolored cells in the grid will be colored
+                    table[i].childNodes[j].style.backgroundColor = this.state.color;
+                }
+            }
+        }
+    }
+
+    //sets all grid cells to selected color
+    fillAll = () => {
+        let table = ReactDOM.findDOMNode(this).childNodes[8].childNodes[0].childNodes;
+        for(let i = 0; i < this.state.rows; i++){
+            for(let j = 0; j < this.state.cols; j++)
+                table[i].childNodes[j].style.backgroundColor = this.state.color;
+        }
+    }
+
+    //sets all grid cells to white
+    clearAll = () => {
+        let table = ReactDOM.findDOMNode(this).childNodes[8].childNodes[0].childNodes;
+        for(let i = 0; i < this.state.rows; i++){
+            for(let j = 0; j < this.state.cols; j++)
+                table[i].childNodes[j].style.backgroundColor = "white";
+        }
+    }
 
     render(){
         return(
@@ -61,11 +100,11 @@ class App extends Component{
                 <button className="addRow" onClick={this.addRow}>Add Row</button>
                 <button className="addCol" onClick={this.addCol}>Add Col</button>
                 <button className="removeRow" onClick={this.removeRow}>Remove Row</button>
-                <button className="removeCol"onClick={this.removeCol}>Remove Col</button>
-                <button className="fillUncolored">Fill All Uncolored</button>
-                <button className="fillAll">Fill All</button>
-                <button className="clearAll">Clear</button>
-                <select onchange="" id = "selectedID">
+                <button className="removeCol" onClick={this.removeCol}>Remove Col</button>
+                <button className="fillUncolored" onClick={this.fillUncolored}>Fill All Uncolored</button>
+                <button className="fillAll" onClick={this.fillAll}>Fill All</button>
+                <button className="clearAll" onClick={this.clearAll}>Clear</button>
+                <select onChange={this.selectColor} id = "selectedID">
                     <option value="SELECT">SELECT</option>
                     <option value="Red">Red</option>
                     <option value="Green">Green</option>
